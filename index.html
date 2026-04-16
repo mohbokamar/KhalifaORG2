@@ -45,6 +45,8 @@
     .mobile-nav-open{display:flex !important}
     .rtl-flip{transform:none}
     html[dir="ltr"] .rtl-flip{transform:scaleX(-1)}
+    .num-en{direction:ltr; unicode-bidi:bidi-override; font-variant-numeric:lining-nums tabular-nums}
+    canvas{display:block; width:100% !important; height:100% !important}
     @media (max-width:1023px){.sticky-side{position:static;max-height:none}}
   </style>
 </head>
@@ -52,7 +54,7 @@
   <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-3 flex items-center justify-between gap-3">
       <button onclick="scrollToSection('home')" class="flex items-center gap-3 text-right min-w-0 flex-1 lg:flex-none">
-        <img src="GoldB-Arabic.png" alt="KIF Logo" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl object-contain bg-white shadow-sm p-1 shrink-0">
+        <img src="assets/logo.png" alt="KIF Logo" class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl object-contain bg-white shadow-sm p-1 shrink-0">
         <div class="min-w-0 text-start">
           <div id="brandName" class="font-black text-sm sm:text-lg leading-tight text-kifBlue truncate"></div>
           <div id="brandSub" class="text-[9px] sm:text-xs mt-1 font-bold tracking-[.14em] uppercase text-kifGold truncate"></div>
@@ -106,16 +108,16 @@
           <div class="lg:col-span-5">
             <div class="glass rounded-[2rem] p-6 sm:p-8 text-kifBlue shadow-soft">
               <div class="flex items-center gap-4 mb-6">
-                <img src="GoldB-Arabic.png" alt="KIF Logo" class="w-16 h-16 object-contain">
+                <img src="assets/logo.png" alt="KIF Logo" class="w-16 h-16 object-contain">
                 <div>
                   <div id="heroCardTitle" class="font-black text-xl text-kifBlue"></div>
                   <div id="heroCardSub" class="text-sm font-bold text-kifSlate mt-1"></div>
                 </div>
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric1Label"></div><div class="text-3xl font-black text-kifBlue">1,250</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot"></div></div>
-                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric2Label"></div><div class="text-3xl font-black text-kifBlue">2,700</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot2"></div></div>
-                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric3Label"></div><div class="text-3xl font-black text-kifBlue">4,000</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot3"></div></div>
+                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric1Label"></div><div class="text-3xl font-black text-kifBlue num-en">1,250</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot"></div></div>
+                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric2Label"></div><div class="text-3xl font-black text-kifBlue num-en">2,700</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot2"></div></div>
+                <div class="rounded-3xl bg-kifBg p-5 border border-slate-100"><div class="text-xs font-black text-kifSlate mb-2" id="metric3Label"></div><div class="text-3xl font-black text-kifBlue num-en">4,000</div><div class="text-xs mt-1 text-kifSlate" id="metricFoot3"></div></div>
               </div>
               <div class="mt-6 rounded-3xl bg-kifBlue text-white p-5">
                 <div id="methodBadge" class="text-sm font-black text-kifGold mb-1"></div>
@@ -185,18 +187,18 @@
           <div class="glass rounded-[2rem] p-6 shadow-card">
             <div id="refTitle" class="text-sm font-black text-kifGold mb-4"></div>
             <div class="space-y-4">
-              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref1Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1">1.92</div></div>
-              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref2Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1">67%</div></div>
-              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref3Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1">478 د.ل</div></div>
+              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref1Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1 num-en">1.92</div></div>
+              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref2Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1 num-en">67%</div></div>
+              <div class="rounded-2xl bg-kifBg p-4 border border-slate-100"><div id="ref3Label" class="text-xs font-black text-kifSlate"></div><div class="text-2xl font-black text-kifBlue mt-1 num-en">478 LYD</div></div>
             </div>
           </div>
         </div>
 
         <div class="lg:col-span-8 space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifGold"><div id="kpi1Label" class="text-xs font-black text-kifSlate"></div><div id="perPersonMonthly" class="text-4xl font-black text-kifBlue mt-2">798</div><div id="kpiFoot1" class="text-xs mt-2 text-kifSlate"></div></div>
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifBlue"><div id="kpi2Label" class="text-xs font-black text-kifSlate"></div><div id="familyMonthly" class="text-4xl font-black text-kifBlue mt-2">3,990</div><div id="kpiFoot2" class="text-xs mt-2 text-kifSlate"></div></div>
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-slate-400"><div id="kpi3Label" class="text-xs font-black text-kifSlate"></div><div id="perPersonDaily" class="text-4xl font-black text-kifBlue mt-2">26.6</div><div id="kpiFoot3" class="text-xs mt-2 text-kifSlate"></div></div>
+            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifGold"><div id="kpi1Label" class="text-xs font-black text-kifSlate"></div><div id="perPersonMonthly" class="text-4xl font-black text-kifBlue mt-2 num-en">798</div><div id="kpiFoot1" class="text-xs mt-2 text-kifSlate"></div></div>
+            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifBlue"><div id="kpi2Label" class="text-xs font-black text-kifSlate"></div><div id="familyMonthly" class="text-4xl font-black text-kifBlue mt-2 num-en">3,990</div><div id="kpiFoot2" class="text-xs mt-2 text-kifSlate"></div></div>
+            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-slate-400"><div id="kpi3Label" class="text-xs font-black text-kifSlate"></div><div id="perPersonDaily" class="text-4xl font-black text-kifBlue mt-2 num-en">26.6</div><div id="kpiFoot3" class="text-xs mt-2 text-kifSlate"></div></div>
           </div>
 
           <div class="grid grid-cols-1 xl:grid-cols-2 gap-5 sm:gap-6">
@@ -431,7 +433,7 @@
         formulaTitle2:'Formula', formulaBox:'8.30 × 1.92 = 15.94 د.ل يوميًا للفرد<br>15.94 × 30 = 478 د.ل شهريًا للفرد<br>478 × 1.67 ≈ 800 د.ل شهريًا للفرد<br>800 × 5 ≈ 4,000 د.ل للأسرة',
         conclusionTitle:'الخاتمة',
         conclusionText:'يمثل خط الفقر المستخلص من هذا العمل أداة توجيهية لصناع القرار تعكس الحد الأدنى لتكلفة الاحتياجات الأساسية في المدن الليبية الرئيسية في ظل الظروف الاقتصادية الراهنة. ورغم أن المقاربة لا تغطي كل الجوانب المعيشية متعددة الأبعاد، فإنها توفر تقديرًا للفقر يتسم بالشفافية وقابلية التكرار ويرتكز على معايير دولية تتوافق مع البيانات المتاحة.',
-        footerTitle:'مؤسسة خليفة الدولية للأعمال الإنسانية', footerSub:'مذكرة منهجية خط الفقر — نسخة ويب تفاعلية — 2026', footerHint:'ضع ملف الشعار GoldB-Arabic.png بجانب ملف HTML ليظهر مباشرة',
+        footerTitle:'مؤسسة خليفة الدولية للأعمال الإنسانية', footerSub:'مذكرة منهجية خط الفقر — نسخة ويب تفاعلية — 2026', footerHint:'ضع ملف الشعار assets/logo.png بجانب ملف HTML ليظهر مباشرة',
         chartLabels:{poverty:['المدقع','المطلق','الدولي'], dist:['غذاء','سكن وخدمات','صحة وتعليم','طوارئ واحتياط'], city:['طرابلس','بنغازي','سبها'], fig1:['خط الفقر المدقع (MEB)','خط الفقر المطلق (MEB+)','خط الفقر الدولي (8$)']}
       },
       en: {
@@ -521,7 +523,7 @@
         formulaTitle2:'FORMULA', formulaBox:'8.30 × 1.92 = LYD 15.94 per person per day<br>15.94 × 30 = LYD 478 per person per month<br>478 × 1.67 ≈ LYD 800 per person per month<br>800 × 5 ≈ LYD 4,000 per household',
         conclusionTitle:'Conclusion',
         conclusionText:'The poverty line derived from this work serves as an operational decision-support tool that reflects the minimum cost of essential needs in Libya’s major cities under current economic conditions. While the approach does not fully capture every multidimensional aspect of living standards, it offers a transparent, replicable estimate of poverty grounded in international standards and available evidence.',
-        footerTitle:'Khalifa International Foundation for Humanitarian Works', footerSub:'Poverty Line Methodological Note — Interactive Web Edition — 2026', footerHint:'Place GoldB-Arabic.png in the same folder as the HTML file so the logo appears automatically.',
+        footerTitle:'Khalifa International Foundation for Humanitarian Works', footerSub:'Poverty Line Methodological Note — Interactive Web Edition — 2026', footically.',
         chartLabels:{poverty:['Extreme','Absolute','International'], dist:['Food','Housing & Services','Health & Education','Emergency Buffer'], city:['Tripoli','Benghazi','Sebha'], fig1:['Extreme Poverty (MEB)','Absolute Poverty (MEB+)','International Poverty Line ($8)']}
       }
     };
@@ -533,7 +535,7 @@
 
     function qs(id){ return document.getElementById(id); }
     function setText(id, value){ const el = qs(id); if(el) el.innerHTML = value; }
-    function formatNumber(n){ return new Intl.NumberFormat(currentLang === 'ar' ? 'ar-EG' : 'en-US').format(Math.round(n)); }
+    function formatNumber(n){ return new Intl.NumberFormat('en-US').format(Math.round(n)); }
 
     function toggleMobileMenu(){ qs('mobileMenu')?.classList.toggle('mobile-nav-open'); }
     function closeMobileMenu(){ qs('mobileMenu')?.classList.remove('mobile-nav-open'); }
@@ -541,6 +543,8 @@
 
     function tableRenderer(headId, bodyId, head, rows){
       qs(headId).innerHTML = head.map(h => `<th class="px-5 py-4 font-black text-start">${h}</th>`).join('');
+      qs(bodyId).innerHTML = rows.map((row, idx) => `<tr class="border-b border-slate-100 ${idx % 2 ? 'bg-slate-50' : 'bg-white'}">${row.map(cell => `<td class="px-5 py-4 ${/[0-9]/.test(String(cell)) ? 'num-en' : ''}">${cell}</td>`).join('')}</tr>`).join('');
+    }</th>`).join('');
       qs(bodyId).innerHTML = rows.map((row, idx) => `<tr class="border-b border-slate-100 ${idx % 2 ? 'bg-slate-50' : 'bg-white'}">${row.map(cell => `<td class="px-5 py-4">${cell}</td>`).join('')}</tr>`).join('');
     }
 
@@ -619,7 +623,7 @@
       updateSimulator();
     }
 
-    function destroyChart(id){ if(charts[id]){ charts[id].destroy(); charts[id] = null; } }
+    function destroyChart(id){ if(charts[id]){ try{ charts[id].destroy(); }catch(e){} charts[id] = null; } }
     function destroyAllCharts(){ Object.keys(charts).forEach(key => destroyChart(key)); }
 
     function updateSimulator(){
@@ -633,32 +637,90 @@
       updateDistributionChart(monthlyFamily);
     }
 
+    function baseChartOptions(extra = {}){
+      return {
+        responsive:true,
+        maintainAspectRatio:false,
+        resizeDelay:150,
+        interaction:{mode:'nearest',intersect:false},
+        plugins:{legend:{display:false}},
+        animation:false,
+        ...extra
+      };
+    }
+
     function makePovertyLinesChart(){
-      const t = content[currentLang]; destroyChart('povertyLinesChart');
-      charts.povertyLinesChart = new Chart(qs('povertyLinesChart'), {type:'bar',data:{labels:t.chartLabels.poverty,datasets:[{data:[1250,2700,4000],backgroundColor:['#002366','#D4AF37','#16304f'],borderRadius:14,maxBarThickness:48}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'rgba(0,35,102,.08)'}}}}});
+      const t = content[currentLang];
+      const canvas = qs('povertyLinesChart');
+      if(!canvas) return;
+      destroyChart('povertyLinesChart');
+      charts.povertyLinesChart = new Chart(canvas.getContext('2d'), {
+        type:'bar',
+        data:{labels:t.chartLabels.poverty,datasets:[{data:[1250,2700,4000],backgroundColor:['#002366','#D4AF37','#16304f'],borderRadius:14,maxBarThickness:48}]},
+        options: baseChartOptions({
+          scales:{x:{grid:{display:false},ticks:{color:'#16304f'}},y:{beginAtZero:true,grid:{color:'rgba(0,35,102,.08)'},ticks:{color:'#16304f'}}}
+        })
+      });
     }
 
     function makeCityMebChart(){
-      const t = content[currentLang]; destroyChart('cityMebChart');
-      charts.cityMebChart = new Chart(qs('cityMebChart'), {type:'bar',data:{labels:t.chartLabels.city,datasets:[{data:[1077.625,1094.8,1228.9375],backgroundColor:['#002366','#0d2f78','#D4AF37'],borderRadius:14,maxBarThickness:42}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'rgba(0,35,102,.08)'}}}}});
+      const t = content[currentLang];
+      const canvas = qs('cityMebChart');
+      if(!canvas) return;
+      destroyChart('cityMebChart');
+      charts.cityMebChart = new Chart(canvas.getContext('2d'), {
+        type:'bar',
+        data:{labels:t.chartLabels.city,datasets:[{data:[1077.625,1094.8,1228.9375],backgroundColor:['#002366','#0d2f78','#D4AF37'],borderRadius:14,maxBarThickness:42}]},
+        options: baseChartOptions({
+          scales:{x:{grid:{display:false},ticks:{color:'#16304f'}},y:{beginAtZero:true,grid:{color:'rgba(0,35,102,.08)'},ticks:{color:'#16304f'}}}
+        })
+      });
     }
 
     function updateDistributionChart(total){
-      const t = content[currentLang]; destroyChart('distributionChart');
-      charts.distributionChart = new Chart(qs('distributionChart'), {type:'doughnut',data:{labels:t.chartLabels.dist,datasets:[{data:[total*.40,total*.35,total*.15,total*.10],backgroundColor:['#002366','#D4AF37','#16304f','#cbd5e1'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'64%',plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:20}}}}});
+      const t = content[currentLang];
+      const canvas = qs('distributionChart');
+      if(!canvas) return;
+      destroyChart('distributionChart');
+      charts.distributionChart = new Chart(canvas.getContext('2d'), {
+        type:'doughnut',
+        data:{labels:t.chartLabels.dist,datasets:[{data:[total*.40,total*.35,total*.15,total*.10],backgroundColor:['#002366','#D4AF37','#16304f','#cbd5e1'],borderWidth:0}]},
+        options: baseChartOptions({
+          cutout:'64%',
+          plugins:{legend:{position:'bottom',labels:{usePointStyle:true,padding:14,boxWidth:10,color:'#16304f'}}}
+        })
+      });
     }
 
     function makeFigureOneChart(){
-      const t = content[currentLang]; destroyChart('figureOneChart');
-      charts.figureOneChart = new Chart(qs('figureOneChart'), {type:'bar',data:{labels:t.chartLabels.fig1,datasets:[{data:[1250,2750,4000],backgroundColor:'#0d3f70',borderRadius:10,maxBarThickness:100}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{beginAtZero:true,suggestedMax:4200,grid:{color:'rgba(0,35,102,.08)'}}}}});
+      const t = content[currentLang];
+      const canvas = qs('figureOneChart');
+      if(!canvas) return;
+      destroyChart('figureOneChart');
+      charts.figureOneChart = new Chart(canvas.getContext('2d'), {
+        type:'bar',
+        data:{labels:t.chartLabels.fig1,datasets:[{data:[1250,2750,4000],backgroundColor:'#0d3f70',borderRadius:10,maxBarThickness:100}]},
+        options: baseChartOptions({
+          scales:{x:{grid:{display:false},ticks:{color:'#16304f'}},y:{beginAtZero:true,suggestedMax:4200,grid:{color:'rgba(0,35,102,.08)'},ticks:{color:'#16304f'}}}
+        })
+      });
     }
 
     function makeFigureTwoChart(){
+      const canvas = qs('figureTwoChart');
+      if(!canvas) return;
       destroyChart('figureTwoChart');
       const labels = ['2019M01','2019M04','2019M07','2019M10','2020M01','2020M04','2020M07','2020M10','2021M01','2021M04','2021M07','2021M10','2022M01','2022M04','2022M07','2022M10','2023M01','2023M04','2023M07','2023M10','2024M01','2024M04','2024M07','2024M10','2025M01','2025M04'];
       const bfx = [2,-4,5,-2,8,0,9,-10,-2,1,0,2,-1,3,1,-2,4,7,13,-4,2,-16,5,3,4,8];
       const meb = [5,-1,3,-5,2,31,-1,7,-3,9,-2,0,18,-2,1,2,-1,3,-2,1,0,4,-1,2,0,8];
-      charts.figureTwoChart = new Chart(qs('figureTwoChart'), {type:'line',data:{labels,datasets:[{label:'BFX %',data:bfx,borderColor:'#6da7e5',backgroundColor:'#6da7e5',tension:.28,pointRadius:0,borderWidth:2},{label:'MEB %',data:meb,borderColor:'#f4a259',backgroundColor:'#f4a259',tension:.28,pointRadius:0,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{display:false}},y:{min:-20,max:35,ticks:{callback:(v)=>v+'%'},grid:{color:'rgba(0,35,102,.08)'}}}}});
+      charts.figureTwoChart = new Chart(canvas.getContext('2d'), {
+        type:'line',
+        data:{labels,datasets:[{label:'BFX %',data:bfx,borderColor:'#6da7e5',backgroundColor:'#6da7e5',tension:.28,pointRadius:0,borderWidth:2},{label:'MEB %',data:meb,borderColor:'#f4a259',backgroundColor:'#f4a259',tension:.28,pointRadius:0,borderWidth:2}]},
+        options: baseChartOptions({
+          plugins:{legend:{position:'top',labels:{color:'#16304f'}}},
+          scales:{x:{ticks:{maxRotation:0,autoSkip:true,maxTicksLimit:8,color:'#16304f'},grid:{display:false}},y:{min:-20,max:35,ticks:{callback:(v)=>v+'%',color:'#16304f'},grid:{color:'rgba(0,35,102,.08)'}}}
+        })
+      });
     }
 
     function refreshCharts(){ destroyAllCharts(); makePovertyLinesChart(); makeCityMebChart(); makeFigureOneChart(); makeFigureTwoChart(); }
@@ -669,7 +731,13 @@
       document.querySelectorAll('.side-link').forEach(link=>{ link.classList.remove('active'); if(link.getAttribute('href') === `#${current}`) link.classList.add('active'); });
     });
 
-    window.addEventListener('resize', ()=>{ if(window.innerWidth >= 1024) closeMobileMenu(); });
+    window.addEventListener('resize', ()=>{
+      if(window.innerWidth >= 1024) closeMobileMenu();
+      clearTimeout(window.__chartResizeTimer);
+      window.__chartResizeTimer = setTimeout(()=>{
+        Object.values(charts).forEach(chart => { try{ chart.resize(); }catch(e){} });
+      }, 120);
+    });
     window.addEventListener('load', ()=>{ applyLanguage(); updateSimulator(); });
   </script>
 </body>
