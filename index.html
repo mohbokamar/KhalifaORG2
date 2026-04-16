@@ -33,62 +33,72 @@
     html[lang="en"]{--font-main:'Inter',sans-serif}
     *{font-family:var(--font-main);scroll-behavior:smooth}
     body{background:#f6f8fc;color:#16304f;overflow-x:hidden}
-    .glass{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid rgba(0,35,102,.06)}
-    .hero-bg{background:radial-gradient(circle at top right, rgba(212,175,55,.16), transparent 24%),linear-gradient(135deg,#002366 0%,#00163f 100%)}
-    .side-link.active{background:#002366;color:#fff;border-color:#D4AF37}
-    .copy p{line-height:2}
-    .table-wrap{-webkit-overflow-scrolling:touch}
-    .num-en{direction:ltr; unicode-bidi:bidi-override}
+    .glass{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border:1px solid rgba(0,35,102,.06)}
+    .hero-bg{background:radial-gradient(circle at top right, rgba(212,175,55,.18), transparent 28%),linear-gradient(135deg,#002366 0%,#00163f 100%)}
+    .num-en{direction:ltr; unicode-bidi:bidi-override; font-variant-numeric: tabular-nums}
+    .table-wrap::-webkit-scrollbar{height:6px}
+    .table-wrap::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
+    .animate-float{animation: float 6s ease-in-out infinite}
+    @keyframes float{0%{transform:translateY(0px)}50%{transform:translateY(-10px)}100%{transform:translateY(0px)}}
   </style>
 </head>
 <body>
-  <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80">
+
+  <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/60">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-11 h-11 bg-kifBlue rounded-xl flex items-center justify-center text-white font-bold">KIF</div>
-        <div class="hidden sm:block">
-          <div id="brandName" class="font-black text-sm lg:text-lg text-kifBlue"></div>
-          <div id="brandSub" class="text-[10px] font-bold text-kifGold uppercase tracking-widest"></div>
+      <div class="flex items-center gap-4">
+        <img src="GoldB-Arabic.png" alt="KIF Logo" class="h-12 w-auto object-contain">
+        <div class="hidden md:block">
+          <div id="brandName" class="font-black text-lg text-kifBlue leading-tight"></div>
+          <div id="brandSub" class="text-[10px] font-extrabold text-kifGold uppercase tracking-[0.2em]"></div>
         </div>
       </div>
       
-      <nav class="hidden lg:flex items-center gap-6">
-        <button onclick="scrollToSection('home')" data-nav="home" class="font-bold text-sm text-kifBlue"></button>
-        <button onclick="scrollToSection('summary')" data-nav="summary" class="font-bold text-sm text-kifBlue"></button>
-        <button onclick="scrollToSection('dashboard')" data-nav="dashboard" class="font-bold text-sm text-kifBlue"></button>
-        <button onclick="scrollToSection('methodology')" data-nav="methodology" class="px-5 py-2 bg-kifBlue text-white rounded-full text-sm font-bold"></button>
+      <nav class="hidden lg:flex items-center gap-8">
+        <button onclick="scrollToSection('home')" data-nav="home" class="font-bold text-sm text-kifBlue hover:text-kifGold transition-colors"></button>
+        <button onclick="scrollToSection('summary')" data-nav="summary" class="font-bold text-sm text-kifBlue hover:text-kifGold transition-colors"></button>
+        <button onclick="scrollToSection('dashboard')" data-nav="dashboard" class="font-bold text-sm text-kifBlue hover:text-kifGold transition-colors"></button>
+        <button onclick="scrollToSection('methodology')" data-nav="methodology" class="px-6 py-2.5 bg-kifBlue text-white rounded-full text-sm font-black shadow-lg hover:bg-kifBlueSoft transition-all"></button>
       </nav>
 
-      <button onclick="toggleLanguage()" class="px-4 py-2 border border-slate-200 rounded-full text-xs font-black hover:bg-slate-50">AR / EN</button>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleLanguage()" class="px-4 py-2 border-2 border-slate-100 rounded-xl text-xs font-black text-kifBlue hover:bg-slate-50 transition-all">AR / EN</button>
+      </div>
     </div>
   </header>
 
   <main class="pt-28 pb-20">
-    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="hero-bg rounded-[2.5rem] p-8 lg:p-16 text-white shadow-soft relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
         <div class="relative z-10 grid lg:grid-cols-12 gap-12 items-center">
           <div class="lg:col-span-7">
-            <span id="heroBadge" class="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-xs font-bold mb-6"></span>
-            <h1 id="heroTitle" class="text-4xl lg:text-6xl font-black mb-6 leading-tight"></h1>
-            <p id="heroDesc" class="text-lg text-slate-200 mb-8 max-w-2xl"></p>
-            <div class="flex gap-4">
-              <button onclick="scrollToSection('methodology')" id="heroBtn1" class="px-8 py-4 bg-kifGold text-kifBlue font-black rounded-2xl shadow-lg"></button>
-              <button onclick="scrollToSection('dashboard')" id="heroBtn2" class="px-8 py-4 bg-white/10 border border-white/20 text-white font-black rounded-2xl"></button>
+            <span id="heroBadge" class="inline-block px-4 py-1.5 bg-kifGold text-kifBlue rounded-full text-[11px] font-black mb-6 uppercase tracking-wider"></span>
+            <h1 id="heroTitle" class="text-4xl lg:text-7xl font-black mb-6 leading-[1.15]"></h1>
+            <p id="heroDesc" class="text-lg lg:text-xl text-slate-200 mb-10 max-w-2xl leading-relaxed font-light"></p>
+            <div class="flex flex-wrap gap-4">
+              <button onclick="scrollToSection('methodology')" id="heroBtn1" class="px-10 py-4 bg-white text-kifBlue font-black rounded-2xl shadow-xl hover:scale-105 transition-transform"></button>
+              <button onclick="scrollToSection('dashboard')" id="heroBtn2" class="px-10 py-4 bg-transparent border-2 border-white/30 text-white font-black rounded-2xl hover:bg-white/10 transition-all"></button>
             </div>
           </div>
-          <div class="lg:col-span-5 glass rounded-3xl p-8 text-kifBlue">
-            <div id="heroCardTitle" class="text-xl font-black mb-6 border-b border-slate-100 pb-4"></div>
-            <div class="space-y-6">
-              <div class="flex justify-between items-end">
-                <span id="metric1Label" class="text-sm font-bold text-kifSlate"></span>
-                <span class="text-2xl font-black num-en">1,250 <small class="text-xs">LYD</small></span>
+          <div class="lg:col-span-5 animate-float">
+            <div class="glass rounded-[2.5rem] p-8 text-kifBlue shadow-2xl relative">
+              <div class="flex items-center gap-4 mb-8">
+                <img src="GoldB-Arabic.png" class="h-14 w-auto" alt="Logo">
+                <div>
+                  <div id="heroCardTitle" class="text-xl font-black"></div>
+                  <div class="h-1 w-12 bg-kifGold mt-1"></div>
+                </div>
               </div>
-              <div class="flex justify-between items-end">
-                <span id="metric2Label" class="text-sm font-bold text-kifSlate"></span>
-                <span class="text-2xl font-black num-en">2,700 <small class="text-xs">LYD</small></span>
-              </div>
-              <div class="mt-6 p-4 bg-kifBlue rounded-2xl text-white">
-                <p id="methodIntro" class="text-xs leading-relaxed opacity-90"></p>
+              <div class="space-y-6">
+                <div class="p-5 bg-kifBg rounded-3xl border border-slate-100">
+                  <span id="metric1Label" class="text-xs font-black text-kifSlate uppercase tracking-tighter"></span>
+                  <div class="text-3xl font-black num-en mt-1 text-kifBlue">1,250 <span class="text-sm">LYD</span></div>
+                </div>
+                <div class="p-5 bg-kifBg rounded-3xl border border-slate-100">
+                  <span id="metric2Label" class="text-xs font-black text-kifSlate uppercase tracking-tighter"></span>
+                  <div class="text-3xl font-black num-en mt-1 text-kifBlue">2,700 <span class="text-sm">LYD</span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -96,45 +106,52 @@
       </div>
     </section>
 
-    <section id="dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid lg:grid-cols-3 gap-8">
-        <div class="glass rounded-3xl p-8 shadow-card">
-          <h3 id="simTitle" class="text-lg font-black text-kifBlue mb-6"></h3>
-          <div class="space-y-6">
-            <div>
-              <label id="rateLabel" class="block text-xs font-black text-kifSlate mb-3 uppercase tracking-wider"></label>
-              <input type="number" id="rateInput" value="8.35" step="0.05" oninput="updateSimulator()" 
-                class="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl font-black text-kifBlue outline-none focus:border-kifGold">
-            </div>
-            <div>
-              <label id="regionLabel" class="block text-xs font-black text-kifSlate mb-3 uppercase tracking-wider"></label>
-              <div class="grid grid-cols-3 gap-2">
-                <button onclick="setRegion('west', this)" class="region-btn p-3 rounded-xl bg-kifBlue text-white text-xs font-black transition-all">West</button>
-                <button onclick="setRegion('east', this)" class="region-btn p-3 rounded-xl bg-slate-100 text-kifBlue text-xs font-black transition-all">East</button>
-                <button onclick="setRegion('south', this)" class="region-btn p-3 rounded-xl bg-slate-100 text-kifBlue text-xs font-black transition-all">South</button>
+    <section id="dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid lg:grid-cols-12 gap-8">
+        <div class="lg:col-span-4 space-y-6">
+          <div class="glass rounded-[2rem] p-8 shadow-card border border-white">
+            <h3 id="simTitle" class="text-xl font-black text-kifBlue mb-8 border-r-4 border-kifGold pr-4"></h3>
+            <div class="space-y-8">
+              <div>
+                <label id="rateLabel" class="block text-xs font-black text-kifSlate mb-3 uppercase tracking-widest"></label>
+                <div class="relative">
+                  <input type="number" id="rateInput" value="8.35" step="0.05" oninput="updateSimulator()" 
+                    class="w-full p-5 bg-slate-50 border-2 border-slate-100 rounded-2xl font-black text-2xl text-kifBlue outline-none focus:border-kifGold transition-all">
+                  <span class="absolute left-5 top-1/2 -translate-y-1/2 font-black text-slate-300">LYD/$</span>
+                </div>
+              </div>
+              <div>
+                <label id="regionLabel" class="block text-xs font-black text-kifSlate mb-3 uppercase tracking-widest"></label>
+                <div class="grid grid-cols-3 gap-3">
+                  <button onclick="setRegion('west', this)" class="region-btn p-4 rounded-2xl bg-kifBlue text-white text-xs font-black shadow-md transition-all">West</button>
+                  <button onclick="setRegion('east', this)" class="region-btn p-4 rounded-2xl bg-white border border-slate-100 text-kifBlue text-xs font-black hover:bg-slate-50 transition-all">East</button>
+                  <button onclick="setRegion('south', this)" class="region-btn p-4 rounded-2xl bg-white border border-slate-100 text-kifBlue text-xs font-black hover:bg-slate-50 transition-all">South</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-2 grid sm:grid-cols-3 gap-6">
-          <div class="glass rounded-3xl p-6 border-b-4 border-kifGold">
-            <span id="kpi1Label" class="text-xs font-black text-kifSlate"></span>
-            <div id="perPersonMonthly" class="text-3xl font-black text-kifBlue mt-4 num-en"></div>
-            <span class="text-[10px] font-bold text-kifSlate mt-2 block">LYD / Month</span>
-          </div>
-          <div class="glass rounded-3xl p-6 border-b-4 border-kifBlue">
-            <span id="kpi2Label" class="text-xs font-black text-kifSlate"></span>
-            <div id="familyMonthly" class="text-3xl font-black text-kifBlue mt-4 num-en"></div>
-            <span class="text-[10px] font-bold text-kifSlate mt-2 block">LYD / Month</span>
-          </div>
-          <div class="glass rounded-3xl p-6 border-b-4 border-slate-300">
-            <span id="kpi3Label" class="text-xs font-black text-kifSlate"></span>
-            <div id="perPersonDaily" class="text-3xl font-black text-kifBlue mt-4 num-en"></div>
-            <span class="text-[10px] font-bold text-kifSlate mt-2 block">LYD / Day</span>
+        <div class="lg:col-span-8 space-y-6">
+          <div class="grid sm:grid-cols-3 gap-6">
+            <div class="glass rounded-[2rem] p-7 shadow-card hover:translate-y-[-5px] transition-transform duration-300">
+              <span id="kpi1Label" class="text-[11px] font-black text-kifSlate uppercase"></span>
+              <div id="perPersonMonthly" class="text-4xl font-black text-kifBlue mt-4 num-en"></div>
+              <div class="text-[10px] font-bold text-kifGold mt-2">LYD / MONTHLY</div>
+            </div>
+            <div class="glass rounded-[2rem] p-7 shadow-card bg-kifBlue border-none hover:translate-y-[-5px] transition-transform duration-300">
+              <span id="kpi2Label" class="text-[11px] font-black text-white/60 uppercase"></span>
+              <div id="familyMonthly" class="text-4xl font-black text-white mt-4 num-en"></div>
+              <div class="text-[10px] font-bold text-kifGold mt-2">LYD / MONTHLY</div>
+            </div>
+            <div class="glass rounded-[2rem] p-7 shadow-card hover:translate-y-[-5px] transition-transform duration-300">
+              <span id="kpi3Label" class="text-[11px] font-black text-kifSlate uppercase"></span>
+              <div id="perPersonDaily" class="text-4xl font-black text-kifBlue mt-4 num-en"></div>
+              <div class="text-[10px] font-bold text-kifGold mt-2">LYD / DAILY</div>
+            </div>
           </div>
           
-          <div class="sm:col-span-3 glass rounded-3xl p-8 h-[400px]">
+          <div class="glass rounded-[2.5rem] p-8 shadow-card h-[450px]">
              <canvas id="povertyChart"></canvas>
           </div>
         </div>
@@ -142,10 +159,15 @@
     </section>
   </main>
 
-  <footer class="bg-kifBlue text-white py-12">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      <p id="footerTitle" class="font-black text-lg mb-2"></p>
-      <p id="footerSub" class="text-sm opacity-60"></p>
+  <footer class="bg-[#000e29] text-white py-16 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center">
+      <img src="GoldB-Arabic.png" class="h-20 w-auto mb-8 brightness-0 invert opacity-80" alt="Footer Logo">
+      <p id="footerTitle" class="font-black text-2xl mb-4 text-center"></p>
+      <div class="w-24 h-1 bg-kifGold mb-6"></div>
+      <p id="footerSub" class="text-sm text-slate-400 font-medium"></p>
+      <div class="mt-12 pt-8 border-t border-white/10 w-full text-center text-[10px] text-slate-500 font-bold tracking-widest uppercase">
+        Khalifa International Foundation &copy; 2026 | Strategic Methodology Division
+      </div>
     </div>
   </footer>
 
@@ -153,45 +175,43 @@
     const content = {
       ar: {
         dir: 'rtl',
-        brandName: 'مؤسسة خليفة الدولية للأعمال الإنسانية',
+        brandName: 'مؤسسة خليفة الدولية',
         brandSub: 'بوابة المنهجية والأبحاث الاستراتيجية',
-        nav: { home:'الرئيسية', summary:'الملخص', dashboard:'البيانات', methodology:'المذكرة الكاملة' },
-        heroBadge: 'تحديث مارس 2026',
-        heroTitle: 'منهجية <span class="text-kifGold">خط الفقر</span> في ليبيا',
-        heroDesc: 'تحليل ديناميكي لسلة الاحتياجات الأساسية وتكلفة المعيشة لعام 2026، مصمم لدعم صناع القرار والمنظمات الإنسانية.',
-        heroBtn1: 'تصفح المذكرة', heroBtn2: 'لوحة البيانات',
-        heroCardTitle: 'مؤشرات العتبة الاقتصادية',
-        metric1Label:'الفقر المدقع (أسرة)', metric2Label:'الفقر المطلق (أسرة)',
-        methodIntro:'تعتمد الحسابات على سلة MEB المحدثة ربع سنويًا بناءً على أسعار السوق الموازي والتضخم.',
-        simTitle: 'محاكي خط الفقر الدولي',
-        rateLabel: 'سعر صرف الدولار (موازي)',
-        regionLabel: 'المنطقة الجغرافية',
-        kpi1Label: 'احتياج الفرد شهرياً',
-        kpi2Label: 'احتياج الأسرة (5 أفراد)',
-        kpi3Label: 'خط الفقر اليومي للفرد',
+        nav: { home:'الرئيسية', summary:'الملخص التنفيذي', dashboard:'لوحة المؤشرات', methodology:'المذكرة الكاملة' },
+        heroBadge: 'إصدار منهجي — مارس 2026',
+        heroTitle: 'تحديث <span class="text-kifGold">خط الفقر</span> لعام 2026 في ليبيا',
+        heroDesc: 'تحليل تفاعلي مرن لسلة الاحتياجات الأساسية (MEB) وتكلفة المعيشة، صُمم لدعم التخطيط الاستراتيجي وبرامج المساعدات الإنسانية.',
+        heroBtn1: 'قراءة المذكرة', heroBtn2: 'عرض البيانات',
+        heroCardTitle: 'عتبة الاحتياج المرجعية',
+        metric1Label:'الفقر المدقع (أسرة 5 أفراد)', metric2Label:'الفقر المطلق (أسرة 5 أفراد)',
+        simTitle: 'محاكي خط الفقر الدولي (Dynamic)',
+        rateLabel: 'سعر صرف السوق الموازي (Target Rate)',
+        regionLabel: 'النطاق الجغرافي (Regional Factor)',
+        kpi1Label: 'احتياج الفرد (شهري)',
+        kpi2Label: 'احتياج الأسرة (شهري)',
+        kpi3Label: 'خط الفقر للفرد (يومي)',
         footerTitle: 'مؤسسة خليفة الدولية للأعمال الإنسانية',
-        footerSub: 'حقوق النشر © 2026 - قسم السياسات'
+        footerSub: 'هذه البيانات محدثة بناءً على المسح السعري للربع الأول من عام 2026.'
       },
       en: {
         dir: 'ltr',
-        brandName: 'Khalifa International Foundation',
+        brandName: 'Khalifa International',
         brandSub: 'Strategic Research & Methodology Portal',
-        nav: { home:'Home', summary:'Summary', dashboard:'Data', methodology:'Full Note' },
-        heroBadge: 'March 2026 Update',
-        heroTitle: '<span class="text-kifGold">Poverty Line</span> Methodology in Libya',
-        heroDesc: 'Dynamic analysis of the Minimum Expenditure Basket (MEB) and 2026 cost of living benchmarks.',
-        heroBtn1: 'Read Note', heroBtn2: 'Data Board',
-        heroCardTitle: 'Economic Threshold Indicators',
-        metric1Label:'Extreme Poverty (Family)', metric2Label:'Absolute Poverty (Family)',
-        methodIntro:'Calculations are based on the quarterly updated MEB indexed to parallel market rates.',
-        simTitle: 'International Line Simulator',
-        rateLabel: 'USD Exchange Rate (Parallel)',
+        nav: { home:'Home', summary:'Executive Summary', dashboard:'Data Board', methodology:'Full Note' },
+        heroBadge: 'Methodology Edition — March 2026',
+        heroTitle: '2026 <span class="text-kifGold">Poverty Line</span> Updates in Libya',
+        heroDesc: 'Dynamic analysis of the Minimum Expenditure Basket (MEB) and cost of living, designed for strategic humanitarian planning.',
+        heroBtn1: 'Read Note', heroBtn2: 'View Data',
+        heroCardTitle: 'Baseline Thresholds',
+        metric1Label:'Extreme Poverty (Family of 5)', metric2Label:'Absolute Poverty (Family of 5)',
+        simTitle: 'International Poverty Simulator',
+        rateLabel: 'Parallel Exchange Rate',
         regionLabel: 'Geographic Region',
-        kpi1Label: 'Monthly Per Capita',
-        kpi2Label: 'Monthly Per Family (5)',
-        kpi3Label: 'Daily Per Capita Line',
+        kpi1Label: 'Per Capita Monthly',
+        kpi2Label: 'Per Family Monthly',
+        kpi3Label: 'Daily Per Capita',
         footerTitle: 'Khalifa International Foundation',
-        footerSub: 'Copyright © 2026 - Policy Dept.'
+        footerSub: 'Data updated based on Q1 2026 price monitoring.'
       }
     };
 
@@ -218,7 +238,6 @@
       document.getElementById('heroCardTitle').innerText = c.heroCardTitle;
       document.getElementById('metric1Label').innerText = c.metric1Label;
       document.getElementById('metric2Label').innerText = c.metric2Label;
-      document.getElementById('methodIntro').innerText = c.methodIntro;
       document.getElementById('simTitle').innerText = c.simTitle;
       document.getElementById('rateLabel').innerText = c.rateLabel;
       document.getElementById('regionLabel').innerText = c.regionLabel;
@@ -238,9 +257,9 @@
 
     function updateSimulator() {
       const rate = parseFloat(document.getElementById('rateInput').value) || 8.35;
-      let factor = currentRegion === 'west' ? 1.0 : (currentRegion === 'east' ? 1.05 : 1.15);
+      let factor = currentRegion === 'west' ? 1.0 : (currentRegion === 'east' ? 1.08 : 1.18);
       
-      // Equation: $Daily = 15.94 \times (Rate / 5.00) \times Factor$
+      // International Line Logic: 15.94 PPP (Adjusted for 2026)
       const daily = 15.94 * (rate / 5.0) * factor;
       const monthlyPerson = daily * 30;
       const monthlyFamily = monthlyPerson * 5;
@@ -255,11 +274,11 @@
     function setRegion(reg, btn) {
       currentRegion = reg;
       document.querySelectorAll('.region-btn').forEach(b => {
-        b.classList.replace('bg-kifBlue', 'bg-slate-100');
-        b.classList.replace('text-white', 'text-kifBlue');
+        b.classList.remove('bg-kifBlue', 'text-white', 'shadow-md');
+        b.classList.add('bg-white', 'text-kifBlue', 'border', 'border-slate-100');
       });
-      btn.classList.replace('bg-slate-100', 'bg-kifBlue');
-      btn.classList.replace('text-kifBlue', 'text-white');
+      btn.classList.add('bg-kifBlue', 'text-white', 'shadow-md');
+      btn.classList.remove('bg-white', 'text-kifBlue', 'border-slate-100');
       updateSimulator();
     }
 
@@ -270,19 +289,30 @@
       myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: currentLang === 'ar' ? ['المدقع', 'المطلق', 'الدولي (المحاكي)'] : ['Extreme', 'Absolute', 'Intl (Simulated)'],
+          labels: currentLang === 'ar' ? ['خط الفقر المدقع', 'خط الفقر المطلق', 'الخط الدولي (المحاكي)'] : ['Extreme Line', 'Absolute Line', 'Intl. Simulated'],
           datasets: [{
             label: 'LYD / Month',
             data: [1250, 2700, intlLine],
-            backgroundColor: ['#62748a', '#103a80', '#D4AF37'],
-            borderRadius: 12
+            backgroundColor: ['#cbd5e1', '#103a80', '#D4AF37'],
+            borderRadius: 15,
+            barThickness: 45
           }]
         },
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          plugins: { legend: { display: false } },
-          scales: { y: { beginAtZero: true, grid: { display: false } } }
+          plugins: { 
+            legend: { display: false },
+            tooltip: { backgroundColor: '#002366', titleFont: { family: 'Cairo' }, bodyFont: { family: 'Cairo' } }
+          },
+          scales: { 
+            y: { 
+              beginAtZero: true, 
+              grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false },
+              ticks: { font: { family: 'Inter', weight: 'bold' } }
+            },
+            x: { grid: { display: false } }
+          }
         }
       });
     }
