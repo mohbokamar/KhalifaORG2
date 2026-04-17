@@ -45,6 +45,7 @@
       background: #f6f8fc;
       color: #16304f;
       overflow-x: hidden;
+      margin: 0;
     }
 
     .glass {
@@ -79,6 +80,7 @@
       direction: ltr;
       unicode-bidi: bidi-override;
       font-variant-numeric: lining-nums tabular-nums;
+      display: inline-block;
     }
 
     .table-wrap { -webkit-overflow-scrolling: touch; }
@@ -96,6 +98,149 @@
       height: 100% !important;
     }
 
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #002366 0%, #00163f 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+
+    .splash-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .splash-logo {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      animation: slowSpin 4.5s linear infinite;
+      filter: drop-shadow(0 12px 26px rgba(0,0,0,.22));
+    }
+
+    .splash-text {
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-size: 14px;
+      opacity: .9;
+    }
+
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-float {
+      animation: heroFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes heroFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .table-pro {
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border-radius: 1.4rem;
+    }
+
+    .table-pro thead th {
+      background: linear-gradient(135deg, #002366 0%, #103a80 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .table-pro tbody tr {
+      transition: background-color .25s ease, transform .25s ease;
+    }
+
+    .table-pro tbody tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .table-pro tbody tr:hover {
+      background: #eef4ff;
+    }
+
+    .table-pro td, .table-pro th {
+      padding: 16px 20px;
+      text-align: start;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+
+    .table-pro tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .table-shell {
+      background: #fff;
+      border: 1px solid #dbe4f0;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 14px 34px rgba(0,35,102,.06);
+    }
+
+    .table-caption-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      background: linear-gradient(180deg, #fbfcfe 0%, #f4f7fb 100%);
+      border-bottom: 1px solid #e6edf7;
+    }
+
+    .table-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #D4AF37;
+      box-shadow: 0 0 0 4px rgba(212,175,55,.16);
+    }
+
+    .chart-card-anim,
+    .table-card-anim,
+    .hero-card-anim {
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .chart-card-anim:hover,
+    .table-card-anim:hover,
+    .hero-card-anim:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0,35,102,.10);
+    }
+
     @media (max-width: 1023px) {
       .sticky-side {
         position: static;
@@ -105,6 +250,13 @@
   </style>
 </head>
 <body>
+
+  <div id="splashScreen" class="splash-screen">
+    <div class="splash-inner">
+      <img src="GoldB-Arabic.png" alt="KIF Logo" class="splash-logo">
+      <div class="splash-text">KIF RESEARCH DEPARTMENT</div>
+    </div>
+  </div>
 
   <header class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-3 flex items-center justify-between gap-3">
@@ -150,9 +302,8 @@
   </header>
 
   <main class="pt-28 pb-20">
-    <!-- HERO -->
-    <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 space-y-8">
-      <div class="hero-bg rounded-[1.75rem] sm:rounded-[2rem] lg:rounded-[2.5rem] p-5 sm:p-8 lg:p-14 text-white shadow-soft overflow-hidden relative">
+    <section id="home" class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 space-y-8">
+      <div class="hero-bg rounded-[1.75rem] sm:rounded-[2rem] lg:rounded-[2.5rem] p-5 sm:p-8 lg:p-14 text-white shadow-soft overflow-hidden relative hero-card-anim">
         <div class="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,.14)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.1)_1px,transparent_1px)] bg-[size:38px_38px]"></div>
 
         <div class="relative grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -168,7 +319,7 @@
           </div>
 
           <div class="lg:col-span-5">
-            <div class="glass rounded-[2rem] p-6 sm:p-8 text-kifBlue shadow-soft">
+            <div class="glass hero-float rounded-[2rem] p-6 sm:p-8 text-kifBlue shadow-soft">
               <div class="flex items-center gap-4 mb-6">
                 <img src="GoldB-Arabic.png" alt="KIF Logo" class="w-16 h-16 object-contain">
                 <div>
@@ -207,10 +358,9 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5" id="messageCards"></div>
     </section>
 
-    <!-- SUMMARY -->
-    <section id="summary" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <section id="summary" class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-        <div class="lg:col-span-7 glass rounded-[2rem] p-8 lg:p-10 shadow-card copy">
+        <div class="lg:col-span-7 glass rounded-[2rem] p-8 lg:p-10 shadow-card hero-card-anim copy">
           <div id="summaryBadge" class="text-sm font-black text-kifGold mb-3"></div>
           <h2 id="summaryTitle" class="text-3xl sm:text-4xl font-black text-kifBlue mb-6"></h2>
           <p id="summaryP1" class="text-kifSlate font-medium"></p>
@@ -229,12 +379,12 @@
         </div>
 
         <div class="lg:col-span-5 space-y-5">
-          <div class="glass rounded-[2rem] p-6 shadow-card">
+          <div class="glass rounded-[2rem] p-6 shadow-card chart-card-anim">
             <div id="povertyChartTitle" class="text-sm font-black text-kifGold mb-4"></div>
             <div class="h-[260px] sm:h-[300px]"><canvas id="povertyLinesChart"></canvas></div>
           </div>
 
-          <div class="glass rounded-[2rem] p-6 shadow-card">
+          <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim">
             <div id="historyTitle" class="text-sm font-black text-kifGold mb-4"></div>
             <ul class="space-y-4 text-sm" id="historyList"></ul>
           </div>
@@ -242,11 +392,10 @@
       </div>
     </section>
 
-    <!-- DASHBOARD -->
-    <section id="dashboard" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <section id="dashboard" class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         <div class="lg:col-span-4 space-y-6">
-          <div class="glass rounded-[2rem] p-6 shadow-card">
+          <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim">
             <div id="simTitle" class="text-sm font-black text-kifGold mb-4"></div>
 
             <label id="rateLabel" class="block text-xs font-black text-kifSlate mb-2"></label>
@@ -267,7 +416,7 @@
             </div>
           </div>
 
-          <div class="glass rounded-[2rem] p-6 shadow-card">
+          <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim">
             <div id="refTitle" class="text-sm font-black text-kifGold mb-4"></div>
             <div class="space-y-4">
               <div class="rounded-2xl bg-kifBg p-4 border border-slate-100">
@@ -288,19 +437,19 @@
 
         <div class="lg:col-span-8 space-y-6">
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifGold">
+            <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim border-r-4 border-kifGold">
               <div id="kpi1Label" class="text-xs font-black text-kifSlate"></div>
               <div id="perPersonMonthly" class="text-4xl font-black text-kifBlue mt-2 num-en">798</div>
               <div id="kpiFoot1" class="text-xs mt-2 text-kifSlate"></div>
             </div>
 
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-kifBlue">
+            <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim border-r-4 border-kifBlue">
               <div id="kpi2Label" class="text-xs font-black text-kifSlate"></div>
               <div id="familyMonthly" class="text-4xl font-black text-kifBlue mt-2 num-en">3,990</div>
               <div id="kpiFoot2" class="text-xs mt-2 text-kifSlate"></div>
             </div>
 
-            <div class="glass rounded-[2rem] p-6 shadow-card border-r-4 border-slate-400">
+            <div class="glass rounded-[2rem] p-6 shadow-card hero-card-anim border-r-4 border-slate-400">
               <div id="kpi3Label" class="text-xs font-black text-kifSlate"></div>
               <div id="perPersonDaily" class="text-4xl font-black text-kifBlue mt-2 num-en">26.6</div>
               <div id="kpiFoot3" class="text-xs mt-2 text-kifSlate"></div>
@@ -308,12 +457,12 @@
           </div>
 
           <div class="grid grid-cols-1 xl:grid-cols-2 gap-5 sm:gap-6">
-            <div class="glass rounded-[2rem] p-6 shadow-card">
+            <div class="glass rounded-[2rem] p-6 shadow-card chart-card-anim">
               <div id="distributionTitle" class="text-sm font-black text-kifGold mb-4"></div>
               <div class="h-[260px] sm:h-[300px]"><canvas id="distributionChart"></canvas></div>
             </div>
 
-            <div class="glass rounded-[2rem] p-6 shadow-card">
+            <div class="glass rounded-[2rem] p-6 shadow-card chart-card-anim">
               <div id="cityChartTitle" class="text-sm font-black text-kifGold mb-4"></div>
               <div class="h-[260px] sm:h-[300px]"><canvas id="cityMebChart"></canvas></div>
             </div>
@@ -321,75 +470,110 @@
         </div>
       </div>
 
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-          <div>
-            <div id="table1Badge" class="text-sm font-black text-kifGold mb-2"></div>
-            <h3 id="table1Title" class="text-2xl font-black text-kifBlue"></h3>
+      <div class="reveal table-card-anim">
+        <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+            <div>
+              <div id="table1Badge" class="text-sm font-black text-kifGold mb-2"></div>
+              <h3 id="table1Title" class="text-2xl font-black text-kifBlue"></h3>
+            </div>
+            <div id="table1Hint" class="text-sm text-kifSlate font-bold"></div>
           </div>
-          <div id="table1Hint" class="text-sm text-kifSlate font-bold"></div>
-        </div>
-        <div class="table-wrap overflow-x-auto rounded-[1.5rem] border border-slate-200">
-          <table class="min-w-[760px] w-full bg-white text-sm">
-            <thead class="bg-kifBlue text-white"><tr id="table1Head"></tr></thead>
-            <tbody class="font-bold text-kifInk" id="table1Body"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-          <div>
-            <div id="table2Badge" class="text-sm font-black text-kifGold mb-2"></div>
-            <h3 id="table2Title" class="text-2xl font-black text-kifBlue"></h3>
-          </div>
-          <div id="table2Hint" class="text-sm text-kifSlate font-bold"></div>
-        </div>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
-          <div class="rounded-[1.5rem] border border-slate-200 overflow-hidden">
-            <div id="foodTitle" class="bg-kifBlue text-white px-5 py-4 font-black"></div>
-            <div id="foodGrid" class="p-4 sm:p-5 bg-white grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-bold text-kifInk"></div>
-          </div>
-          <div class="rounded-[1.5rem] border border-slate-200 overflow-hidden">
-            <div id="nonFoodTitle" class="bg-kifBlue text-white px-5 py-4 font-black"></div>
-            <div id="nonFoodGrid" class="p-4 sm:p-5 bg-white grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-bold text-kifInk"></div>
+          <div class="table-shell">
+            <div class="table-caption-bar">
+              <div class="flex items-center gap-3">
+                <span class="table-dot"></span>
+                <span class="font-black text-kifBlue">Structured Data View</span>
+              </div>
+              <span class="text-xs font-bold text-kifSlate">KIF 2026</span>
+            </div>
+            <div class="table-wrap overflow-x-auto">
+              <table class="table-pro min-w-[760px] w-full bg-white text-sm">
+                <thead class="bg-kifBlue text-white"><tr id="table1Head"></tr></thead>
+                <tbody class="font-bold text-kifInk" id="table1Body"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-          <div>
-            <div id="table3Badge" class="text-sm font-black text-kifGold mb-2"></div>
-            <h3 id="table3Title" class="text-2xl font-black text-kifBlue"></h3>
+      <div class="reveal table-card-anim">
+        <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+            <div>
+              <div id="table2Badge" class="text-sm font-black text-kifGold mb-2"></div>
+              <h3 id="table2Title" class="text-2xl font-black text-kifBlue"></h3>
+            </div>
+            <div id="table2Hint" class="text-sm text-kifSlate font-bold"></div>
           </div>
-          <div id="table3Hint" class="text-sm text-kifSlate font-bold"></div>
-        </div>
-        <div class="table-wrap overflow-x-auto rounded-[1.5rem] border border-slate-200">
-          <table class="min-w-[760px] w-full bg-white text-sm">
-            <thead class="bg-kifBlue text-white"><tr id="table3Head"></tr></thead>
-            <tbody class="font-bold text-kifInk" id="table3Body"></tbody>
-          </table>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6">
+            <div class="rounded-[1.5rem] border border-slate-200 overflow-hidden bg-white shadow-sm">
+              <div id="foodTitle" class="bg-kifBlue text-white px-5 py-4 font-black"></div>
+              <div id="foodGrid" class="p-4 sm:p-5 bg-white grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-bold text-kifInk"></div>
+            </div>
+            <div class="rounded-[1.5rem] border border-slate-200 overflow-hidden bg-white shadow-sm">
+              <div id="nonFoodTitle" class="bg-kifBlue text-white px-5 py-4 font-black"></div>
+              <div id="nonFoodGrid" class="p-4 sm:p-5 bg-white grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-bold text-kifInk"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
-        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
-          <div>
-            <div id="table4Badge" class="text-sm font-black text-kifGold mb-2"></div>
-            <h3 id="table4Title" class="text-2xl font-black text-kifBlue"></h3>
+      <div class="reveal table-card-anim">
+        <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+            <div>
+              <div id="table3Badge" class="text-sm font-black text-kifGold mb-2"></div>
+              <h3 id="table3Title" class="text-2xl font-black text-kifBlue"></h3>
+            </div>
+            <div id="table3Hint" class="text-sm text-kifSlate font-bold"></div>
           </div>
-          <div id="table4Hint" class="text-sm text-kifSlate font-bold"></div>
-        </div>
-        <div class="table-wrap overflow-x-auto rounded-[1.5rem] border border-slate-200">
-          <table class="min-w-[760px] w-full bg-white text-sm">
-            <thead class="bg-kifBlue text-white"><tr id="table4Head"></tr></thead>
-            <tbody class="font-bold text-kifInk" id="table4Body"></tbody>
-          </table>
+          <div class="table-shell">
+            <div class="table-caption-bar">
+              <div class="flex items-center gap-3">
+                <span class="table-dot"></span>
+                <span class="font-black text-kifBlue">Structured Data View</span>
+              </div>
+              <span class="text-xs font-bold text-kifSlate">KIF 2026</span>
+            </div>
+            <div class="table-wrap overflow-x-auto">
+              <table class="table-pro min-w-[760px] w-full bg-white text-sm">
+                <thead class="bg-kifBlue text-white"><tr id="table3Head"></tr></thead>
+                <tbody class="font-bold text-kifInk" id="table3Body"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card mt-8">
+      <div class="reveal table-card-anim">
+        <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card">
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+            <div>
+              <div id="table4Badge" class="text-sm font-black text-kifGold mb-2"></div>
+              <h3 id="table4Title" class="text-2xl font-black text-kifBlue"></h3>
+            </div>
+            <div id="table4Hint" class="text-sm text-kifSlate font-bold"></div>
+          </div>
+          <div class="table-shell">
+            <div class="table-caption-bar">
+              <div class="flex items-center gap-3">
+                <span class="table-dot"></span>
+                <span class="font-black text-kifBlue">Structured Data View</span>
+              </div>
+              <span class="text-xs font-bold text-kifSlate">KIF 2026</span>
+            </div>
+            <div class="table-wrap overflow-x-auto">
+              <table class="table-pro min-w-[760px] w-full bg-white text-sm">
+                <thead class="bg-kifBlue text-white"><tr id="table4Head"></tr></thead>
+                <tbody class="font-bold text-kifInk" id="table4Body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card mt-8 chart-card-anim reveal">
         <div class="mb-6">
           <div id="figure1Badge" class="text-sm font-black text-kifGold mb-2"></div>
           <h3 id="figure1Title" class="text-2xl font-black text-kifBlue"></h3>
@@ -397,7 +581,7 @@
         <div class="h-[280px] sm:h-[360px]"><canvas id="figureOneChart"></canvas></div>
       </div>
 
-      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card mt-8">
+      <div class="glass rounded-[2rem] p-6 sm:p-8 shadow-card mt-8 chart-card-anim reveal">
         <div class="mb-6">
           <div id="figure2Badge" class="text-sm font-black text-kifGold mb-2"></div>
           <h3 id="figure2Title" class="text-2xl font-black text-kifBlue"></h3>
@@ -407,8 +591,7 @@
       </div>
     </section>
 
-    <!-- METHODOLOGY -->
-    <section id="methodology" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <section id="methodology" class="reveal max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
         <aside class="lg:col-span-3 hidden lg:block">
           <div class="sticky-side glass rounded-[2rem] p-4 shadow-card space-y-2">
@@ -427,40 +610,40 @@
         </aside>
 
         <div class="lg:col-span-9 space-y-8 copy">
-          <section id="sec-ack" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-ack" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">01</div>
             <h2 id="ackTitle" class="text-3xl font-black text-kifBlue mb-5"></h2>
             <p id="ackText" class="text-kifSlate font-medium"></p>
           </section>
 
-          <section id="sec-messages" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-messages" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">02</div>
             <h2 id="msgTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <div id="methodCards" class="space-y-5"></div>
           </section>
 
-          <section id="sec-context" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-context" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">03</div>
             <h2 id="contextTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="contextP1" class="text-kifSlate font-medium"></p>
             <p id="contextP2" class="text-kifSlate font-medium mt-4"></p>
           </section>
 
-          <section id="sec-why" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-why" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">04</div>
             <h2 id="whyTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="whyP1" class="text-kifSlate font-medium"></p>
             <p id="whyP2" class="text-kifSlate font-medium mt-4"></p>
           </section>
 
-          <section id="sec-what" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-what" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">05</div>
             <h2 id="whatTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="whatP1" class="text-kifSlate font-medium"></p>
             <div class="grid md:grid-cols-3 gap-4 mt-7" id="whatMetrics"></div>
           </section>
 
-          <section id="sec-use" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-use" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">06</div>
             <h2 id="useTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="useP1" class="text-kifSlate font-medium"></p>
@@ -476,13 +659,13 @@
             </div>
           </section>
 
-          <section id="sec-dynamic" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-dynamic" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">07</div>
             <h2 id="dynTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="dynP1" class="text-kifSlate font-medium"></p>
           </section>
 
-          <section id="sec-annex1" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-annex1" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">08</div>
             <h2 id="annex1Title" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="annex1P1" class="text-kifSlate font-medium"></p>
@@ -498,7 +681,7 @@
             </div>
           </section>
 
-          <section id="sec-annex2" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-annex2" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">09</div>
             <h2 id="annex2Title" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="annex2P1" class="text-kifSlate font-medium"></p>
@@ -511,7 +694,7 @@
             </div>
           </section>
 
-          <section id="sec-conclusion" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card">
+          <section id="sec-conclusion" class="glass rounded-[2rem] p-8 lg:p-10 shadow-card reveal">
             <div class="text-sm font-black text-kifGold mb-3">10</div>
             <h2 id="conclusionTitle" class="text-3xl font-black text-kifBlue mb-6"></h2>
             <p id="conclusionText" class="text-kifSlate font-medium"></p>
@@ -532,16 +715,385 @@
   </footer>
 
   <script>
+    const content = {
+      ar: {
+        dir: 'rtl',
+        brandName: 'مؤسسة خليفة الدولية للأعمال الإنسانية',
+        brandSub: 'قسم الأبحاث',
+        nav: { home:'الرئيسية', summary:'الملخص التنفيذي', dashboard:'الإحصائيات والجداول', methodology:'المذكرة الكاملة' },
+        heroBadge: 'مذكرة منهجية — مارس 2026',
+        heroTitle: 'مذكرة منهجية <span class="text-kifGold">خط الفقر</span> في ليبيا',
+        heroDesc: 'نسخة ويب تفاعلية مبنية على المذكرة المنهجية لمؤسسة خليفة الدولية، تتضمن الخطوط المرجعية للفقر، الجداول الأساسية، المؤشرات المقارنة، وسلة الاحتياجات الأساسية لأسرة مرجعية مكونة من خمسة أفراد.',
+        heroBtn1: 'تصفح المذكرة الكاملة',
+        heroBtn2: 'الإحصائيات والجداول',
+        heroCardTitle: 'مؤسسة خليفة الدولية',
+        heroCardSub: 'قسم الأبحاث',
+        metric1Label:'خط الفقر المدقع',
+        metric2Label:'خط الفقر المطلق',
+        metric3Label:'الخط الدولي',
+        metricFoot:'د.ل / أسرة من 5 أفراد',
+        metricFoot2:'د.ل / أسرة من 5 أفراد',
+        metricFoot3:'د.ل / أسرة من 5 أفراد',
+        methodBadge:'مرتكز المنهجية',
+        methodIntro:'تعتمد المؤسسة على أسعار الحد الأدنى لسلة الاحتياجات الأساسية (MEB) لتحديد خطي الفقر المدقع والمطلق، بينما يستند خط الفقر الدولي إلى معيار البنك الدولي وتعادل القوة الشرائية والتضخم التراكمي.',
+        messageCards:[
+          ['رسالة 01','اعتماد ثلاثة معايير مرجعية: الفقر المدقع، الفقر المطلق، وخط الفقر الدولي.'],
+          ['رسالة 02','المنهجية تستهدف المناطق الحضرية في طرابلس وبنغازي وسبها.'],
+          ['رسالة 03','العتبات الأساسية: 1,250 د.ل، 2,700 د.ل، و4,000 د.ل شهريًا لأسرة مرجعية.'],
+          ['رسالة 04','المراجعة ربع سنوية بسبب ارتباط تكلفة السلة بتقلبات سعر الصرف في السوق الموازي.']
+        ],
+        summaryBadge:'ملخص تنفيذي',
+        summaryTitle:'السياق وخلاصة المقاربة',
+        summaryP1:'تفتقر ليبيا إلى خط فقر وطني رسمي معتمد رغم المحاولات السابقة، وفي ظل التدهور المتسارع للأوضاع الاقتصادية والاجتماعية، تبنت مؤسسة خليفة الدولية نهجًا عمليًا ومرنًا لتحديد الفئات الأكثر احتياجًا وتوجيه برامجها الإنسانية.',
+        summaryP2:'تعرّف المؤسسة الفقر لأسرة مكونة من خمسة أفراد بأنه العجز عن تحمل تكاليف الحد الأدنى من السلع والخدمات الأساسية. ويستند هذا النهج إلى سلة الاحتياجات الأساسية (MEB)، مع تطوير خط الفقر المطلق عبر إضافة الخدمات الأساسية، وتقدير الخط الدولي من خلال PPP والتضخم التراكمي.',
+        summaryStat1Title:'السياق الاقتصادي',
+        summaryStat1Text:'انخفض نصيب الفرد من الدخل القومي الإجمالي من 14,970 دولارًا عام 2012 إلى 6,500 دولار عام 2024.',
+        summaryStat2Title:'مرجعية الاستهداف',
+        summaryStat2Text:'تشكل خطوط الفقر مرجعًا رئيسيًا لتقييم محور سبل العيش والضغوط الاقتصادية ضمن مؤشر الهشاشة الخاص بالمؤسسة.',
+        povertyChartTitle:'خطوط الفقر الشهرية',
+        historyTitle:'المؤشرات التاريخية المرجعية',
+        historyItems:[
+          ['2003 — مصلحة الإحصاء والبنك الدولي','225 د.ل'],
+          ['2013 — تعديل حسب التضخم','390 د.ل'],
+          ['2024 — جامعة مصراتة','2,350 د.ل']
+        ],
+        simTitle:'محاكي الخط الدولي',
+        rateLabel:'سعر الصرف الموازي المستهدف (د.ل / دولار)',
+        regionLabel:'النطاق الجغرافي',
+        regions:{ west:'بنغازي', east:'طرابلس', south:'سبها' },
+        formulaBadge:'المعادلة التوضيحية',
+        formulaText:'Daily LYD = 15.94 × (سعر الصرف الحالي ÷ 5.00) × معامل المنطقة',
+        refTitle:'المؤشرات المرجعية',
+        ref1Label:'PPP لعام 2021',
+        ref2Label:'التضخم التراكمي',
+        ref3Label:'الاحتياج الشهري للفرد في 2022',
+        kpi1Label:'احتياج الفرد الشهري',
+        kpi2Label:'احتياج الأسرة (5 أفراد)',
+        kpi3Label:'الاحتياج اليومي للفرد',
+        kpiFoot1:'دينار ليبي',
+        kpiFoot2:'دينار ليبي',
+        kpiFoot3:'دينار ليبي',
+        distributionTitle:'توزيع تقديري للاحتياج الأسري',
+        cityChartTitle:'مقارنة MEB حسب المدينة',
+        table1Badge:'جدول 1',
+        table1Title:'مقاييس الفقر منذ عام 2003',
+        table1Hint:'القيم كما وردت في المذكرة المنهجية',
+        table1Head:['السنة','المؤسسة','النسبة المئوية','عائلة 5 أفراد','فرد واحد'],
+        table1Rows:[
+          ['2003','مصلحة الإحصاء والتعداد الليبية والبنك الدولي','11.8%','225 د.ل','580 سنوياً / 45 شهرياً / 1.5 يومياً'],
+          ['2013','البنك الدولي (بيانات معدلة حسب التضخم)','14.4%','390 د.ل','966 سنوياً / 78 شهرياً / 2.6 يومياً'],
+          ['2023','جامعة مصراتة','32%','2,350 د.ل','5,640 سنوياً / 462 شهرياً / 15.4 يومياً']
+        ],
+        table2Badge:'جدول 2',
+        table2Title:'سلة الاحتياجات الأساسية (MEB)',
+        table2Hint:'الأصناف الرئيسية الغذائية وغير الغذائية',
+        foodTitle:'أصناف الأغذية الرئيسية',
+        nonFoodTitle:'الأصناف غير الغذائية الأساسية',
+        foodItems:[
+          'خبز (30 رغيف)','بصل (5 كجم)','أرز (15 كجم)','صلصة طماطم معلبة (4 كجم)',
+          'معكرونة (15 كجم)','شاي (500 جم)','دجاج (15 كجم)','زيت طعام (2 لتر)',
+          'تونة (4 كجم)','سكر (2 كجم)','بيض (4 كراتين)','ملح (1 كجم)',
+          'حليب (9 لتر)','دقيق (1 كجم)','طماطم (6 كجم)','حليب مبخر (8 × 170 مل)',
+          'بطاطس (3 كجم)'
+        ],
+        nonFoodItems:[
+          'صابون يد (8 × 90 جم)','فوط صحية (3 × 8 قطعة)','معجون أسنان (1 × 100 جم)','شامبو (3 × 600 مل)',
+          'غسيل الملابس (1 لتر)','فرشاة الأسنان (1.25 قطعة)','سائل غسيل الصحون (1 × 600 مل)','غاز الطهي (2 × 11 كجم)'
+        ],
+        table3Badge:'جدول 3',
+        table3Title:'إجمالي MEB حسب المدن',
+        table3Hint:'من نتائج التقييم السعري لفبراير 2026',
+        table3Head:['المدينة','إجمالي التكلفة الغذائية','مستلزمات النظافة','الوقود','إجمالي MEB'],
+        table3Rows:[
+          ['طرابلس','951.5 د.ل','108.125 د.ل','18 د.ل','1,077.625 د.ل'],
+          ['بنغازي','998.5 د.ل','86.3 د.ل','10 د.ل','1,094.8 د.ل'],
+          ['سبها','1,097.625 د.ل','111.3125 د.ل','20 د.ل','1,228.9375 د.ل']
+        ],
+        table4Badge:'جدول 4',
+        table4Title:'تحويل خط الفقر الدولي إلى الدينار الليبي',
+        table4Hint:'الخطوات الأساسية كما وردت في الملحق 2',
+        table4Head:['الخطوة','القيمة','الشرح'],
+        table4Rows:[
+          ['الخط الدولي','8.30 دولار / فرد / يوم','خاص بالدول متوسطة الدخل العليا'],
+          ['PPP 2021','1.92 د.ل / دولار دولي','معامل تعادل القوة الشرائية لليبيا'],
+          ['الاحتياج اليومي للفرد','15.94 د.ل','8.30 × 1.92'],
+          ['الاحتياج الشهري للفرد','478 د.ل','15.94 × 30'],
+          ['تضخم 2021–2026','67%','باستخدام السوق الموازي كمؤشر بديل'],
+          ['احتياج الأسرة (5 أفراد) في 2026','حوالي 4,000 د.ل','بعد مواءمة التضخم والقياس الأسري']
+        ],
+        figure1Badge:'شكل 1',
+        figure1Title:'خطوط الفقر الشهرية لأسرة مكونة من خمسة أفراد (د.ل)',
+        figure2Badge:'شكل 2',
+        figure2Title:'التغير الشهري لأسعار سلة الإنفاق الأدنى وسعر صرف السوق الموازية (%)',
+        figure2Note:'تتسم أسعار سلة الإنفاق الأدنى والتغيرات الشهرية لأسعار المواد الغذائية ومؤشر أسعار السوق الموازية بحساسية مرتفعة تجاه سعر الصرف. ويُظهر الرسم اتجاهًا تقاربيًا عامًا بين المؤشرين، بما يدعم اعتماد المراجعة الربع سنوية لخطوط الفقر الثلاثة.',
+        tocTitle:'فهرس المذكرة',
+        side:{
+          ack:'شكر وتقدير',
+          messages:'الرسائل الخمس الأساسية',
+          context:'السياق',
+          why:'لماذا خط فقر خاص؟',
+          what:'ما هو خط الفقر؟',
+          use:'كيفية الاستخدام',
+          dynamic:'ثابت أم ديناميكي؟',
+          annex1:'الملحق 1',
+          annex2:'الملحق 2',
+          conclusion:'الخاتمة'
+        },
+        ackTitle:'شكر وتقدير',
+        ackText:'أعدّ هذه المذكرة المنهجية الفريق البحثي التابع لمؤسسة خليفة الدولية للأعمال الإنسانية، وتستعرض النتائج والمنهجية التي استُند إليها في تحديد خطوط الفقر المختلفة المعتمدة لتوجيه البرامج الإنسانية في ليبيا. قاد هذه الدراسة كل من أسيل بدر ومحمد أبوبكر، وبدعم وتوجيه من محمد المجبري ونوران العربي.',
+        msgTitle:'الرسائل الخمس الأساسية',
+        methodMessages:[
+          ['1. تحديد ثلاثة معايير مرجعية للفقر','وضعت المؤسسة ثلاثة معايير مرجعية حاسمة ومتدرجة: خط الفقر المدقع، خط الفقر المطلق، وخط الفقر الدولي.'],
+          ['2. منهجية ترتكز على الاحتياجات الأساسية','يعتمد الإطار التحليلي على أسعار الحد الأدنى لسلة الاحتياجات الأساسية لتحديد خطي الفقر المدقع والمطلق، بينما يستند الخط الدولي إلى معايير البنك الدولي.'],
+          ['3. العتبات المالية الأساسية','1,250 د.ل للفقر المدقع، 2,700 د.ل للفقر المطلق، و4,000 د.ل كخط دولي لأسرة متوسطة الحجم عام 2026.'],
+          ['4. خط الفقر الدولي','يستند إلى معيار 8.30 دولار للفرد يوميًا في الدول متوسطة الدخل العليا، بعد مواءمته محليًا باستخدام PPP والتضخم.'],
+          ['5. الرصد الديناميكي','ستخضع خطوط الفقر الثلاثة للمراجعة بشكل ربع سنوي بسبب تأثر أسعار السلة بتقلبات سعر الصرف في السوق الموازي.']
+        ],
+        contextTitle:'السياق',
+        contextP1:'تاريخيًا، كانت ليبيا من أكثر الاقتصادات ازدهارًا في المنطقة، إلا أن الصراع الممتد وعدم الاستقرار السياسي أثرا بصورة حادة على مكانتها الاقتصادية، حيث انخفض نصيب الفرد من الدخل القومي الإجمالي من نحو 14,970 دولارًا عام 2012 إلى 6,500 دولار عام 2024.',
+        contextP2:'كما انخفض مؤشر التنمية البشرية من 0.774 عام 2010 إلى 0.746 عام 2022، مع اتساع الاحتياج إلى الخدمات الأساسية والرعاية الصحية والدعم الإنساني، وهو ما عزز الحاجة إلى تدخلات موجهة وفعالة.',
+        whyTitle:'لماذا تعتمد المؤسسة خط فقر خاص بها؟',
+        whyP1:'تحتاج المؤسسة إلى خط فقر يجمع بين الأسس العلمية والواقع العملي. ويكمن جوهر الاستهداف في تعظيم أثر الموارد المحدودة عبر توجيهها إلى الفئات الأكثر احتياجًا. وفي ظل غياب خط وطني رسمي للفقر وعدم انتظام المسوح الإحصائية، كان لزامًا على المؤسسة تطوير مرجعية عملية لتوجيه عملياتها الميدانية.',
+        whyP2:'استندت المقاربة إلى الدراسات السابقة والجهود الحالية لتسعير سلة الاحتياجات الأساسية، مع التأكيد على أن هذا الخط مخصص لتوجيه برامج المؤسسة حصراً ولا يمثل خط الفقر الرسمي للدولة.',
+        whatTitle:'ما هو خط الفقر الخاص بمؤسسة خليفة الدولية؟',
+        whatP1:'تحدد المؤسسة الفقر بوصفه العجز عن تحمل تكاليف الحد الأدنى من السلع والخدمات اللازمة لتلبية الاحتياجات الإنسانية الأساسية. ويعتمد الإطار المنهجي على أسعار سلة الاحتياجات الأساسية لتحديد خط الفقر المدقع وخط الفقر المطلق، بينما تُستخدم معايير البنك الدولي كمرجعية للخط الدولي.',
+        whatMetrics:[
+          ['الفقر المدقع','1,250','يغطي الغذاء ومستلزمات النظافة الأساسية'],
+          ['الفقر المطلق','2,700','MEB + الرعاية الصحية والتعليم والسكن'],
+          ['الخط الدولي','4,000','PPP + تعديل التضخم + القياس الأسري']
+        ],
+        useTitle:'كيفية استخدام خط الفقر',
+        useP1:'سيتم دمج خطوط الفقر الخاصة بالمؤسسة مع مؤشر الهشاشة (VI)، وهو أداة تقييم شاملة متعددة الأبعاد لا تقتصر على الجانب المالي فقط، بل تشمل أيضًا رأس المال البشري والكرامة الإنسانية والوصول إلى الخدمات الأساسية.',
+        useCard1Title:'الأبعاد الخمسة',
+        useList:[
+          'البعد الديموغرافي والاجتماعي',
+          'الصحة والحماية',
+          'المأوى والغذاء والسلع غير الغذائية',
+          'المياه والإصحاح والنظافة الشخصية',
+          'سبل العيش والضغوط الاقتصادية'
+        ],
+        useCard2Title:'مرجعية التطبيق',
+        useCard2Text:'يُستخدم خط الفقر مرجعًا رئيسيًا للبعد الخامس لتحديد ما إذا كان إجمالي دخل الأسرة يقل عن العتبة المقررة، وبالتالي تحديد الأسر التي تعاني من ضوائق اقتصادية حادة.',
+        dynTitle:'هل خطوط الفقر ثابتة أم ديناميكية؟',
+        dynP1:'تتسم أسعار سلة الاحتياجات الأساسية بحساسية عالية تجاه تقلبات أسعار صرف العملات الأجنبية، ويظهر التحليل ارتباطًا قويًا بين تكلفة السلة وسعر صرف السوق الموازي. لذلك ستخضع السلة ومؤشر أسعار المواد الغذائية للمراقبة على أساس ربع سنوي، وبمجرد تحديث الأسعار ستُراجع خطوط الفقر الثلاثة.',
+        annex1Title:'الملحق 1: مسوحات وتقديرات سلة الاحتياجات الأساسية',
+        annex1P1:'أُعدت قائمة السلة وفق منهجية متعددة المراحل جمعت بين المعايير النموذجية، والأدلة التوجيهية، والتحقق الميداني من الأسعار. تم جمع البيانات بين 28 يناير و8 فبراير 2026 من الأسواق المحلية والمركزية ومحال البقالة الصغيرة، مع اختيار السعر الوسيط لكل صنف.',
+        annex1Card1Title:'مقياس تكافؤ البالغين',
+        annex1Card1Text:'تعتمد المنهجية مقياس OECD: 1 لرب الأسرة، 0.7 لكل بالغ إضافي، و0.5 للطفل. الأسرة المرجعية المكونة من خمسة أفراد تعادل 3.2 مكافئ بالغ.',
+        annex1Card2Title:'المواءمة الغذائية',
+        annex1Card2Text:'تمت مواءمة السلة مع متوسط 2,100 سعرة حرارية للفرد يوميًا بما يتماشى مع معايير Sphere، مع تكييف بعض الأصناف لتلائم الاحتياجات المحلية.',
+        annex2Title:'الملحق 2: تحويل خط الفقر الدولي إلى الدينار الليبي',
+        annex2P1:'يقيس البنك الدولي خط الفقر للدول متوسطة الدخل العليا عند 8.30 دولار للفرد يوميًا وفق تعادل القوة الشرائية لعام 2021. ولتحويل هذا الخط إلى الدينار الليبي، استخدمت المؤسسة معامل PPP البالغ 1.92 د.ل لكل دولار دولي، ثم تم تحديث القيمة إلى 2026 عبر تطبيق تضخم تراكمي بنسبة 67% باستخدام سعر الصرف الموازي كمؤشر بديل.',
+        formulaTitle2:'FORMULA',
+        formulaBox:'8.30 × 1.92 = 15.94 د.ل يوميًا للفرد<br>15.94 × 30 = 478 د.ل شهريًا للفرد<br>478 × 1.67 ≈ 800 د.ل شهريًا للفرد<br>800 × 5 ≈ 4,000 د.ل للأسرة',
+        conclusionTitle:'الخاتمة',
+        conclusionText:'يمثل خط الفقر المستخلص من هذا العمل أداة توجيهية لصناع القرار تعكس الحد الأدنى لتكلفة الاحتياجات الأساسية في المدن الليبية الرئيسية في ظل الظروف الاقتصادية الراهنة. ورغم أن المقاربة لا تغطي كل الجوانب المعيشية متعددة الأبعاد، فإنها توفر تقديرًا للفقر يتسم بالشفافية وقابلية التكرار ويرتكز على معايير دولية تتوافق مع البيانات المتاحة.',
+        footerTitle:'مؤسسة خليفة الدولية للأعمال الإنسانية',
+        footerSub:'مذكرة منهجية خط الفقر — نسخة ويب تفاعلية — 2026',
+        footerHint:'ضع الشعار GoldB-Arabic.png بجانب ملف HTML ليظهر مباشرة',
+        chartLabels:{
+          poverty:['المدقع','المطلق','الدولي'],
+          dist:['غذاء','سكن وخدمات','صحة وتعليم','طوارئ واحتياط'],
+          city:['طرابلس','بنغازي','سبها'],
+          fig1:['خط الفقر المدقع (MEB)','خط الفقر المطلق (MEB+)','خط الفقر الدولي (8$)']
+        }
+      },
+      en: {
+        dir: 'ltr',
+        brandName: 'Khalifa International Foundation for Humanitarian Works',
+        brandSub: 'Research Department',
+        nav: { home:'Home', summary:'Executive Summary', dashboard:'Statistics & Tables', methodology:'Full Methodological Note' },
+        heroBadge: 'Methodological Note — March 2026',
+        heroTitle: 'Methodological Note on the <span class="text-kifGold">Poverty Line</span> in Libya',
+        heroDesc: 'An interactive web edition based on the methodological note prepared by KIF, featuring poverty reference lines, core tables, comparative indicators, and the Minimum Expenditure Basket for a reference household of five people.',
+        heroBtn1: 'Browse the Full Note',
+        heroBtn2: 'Statistics & Tables',
+        heroCardTitle: 'Khalifa International Foundation',
+        heroCardSub: 'Research Department',
+        metric1Label:'Extreme Poverty Line',
+        metric2Label:'Absolute Poverty Line',
+        metric3Label:'International Poverty Line',
+        metricFoot:'LYD / household of 5',
+        metricFoot2:'LYD / household of 5',
+        metricFoot3:'LYD / household of 5',
+        methodBadge:'Methodological Basis',
+        methodIntro:'The Foundation relies on Minimum Expenditure Basket (MEB) prices to define the extreme and absolute poverty lines, while the international poverty line is anchored in the World Bank benchmark, purchasing power parity, and cumulative inflation adjustment.',
+        messageCards:[
+          ['Message 01','Three reference thresholds are adopted: extreme poverty, absolute poverty, and the international poverty line.'],
+          ['Message 02','The methodology focuses on urban areas in Tripoli, Benghazi, and Sebha.'],
+          ['Message 03','The key thresholds are LYD 1,250, LYD 2,700, and LYD 4,000 per month for a reference household.'],
+          ['Message 04','Quarterly review is required because basket costs are closely linked to fluctuations in the parallel exchange rate.']
+        ],
+        summaryBadge:'Executive Summary',
+        summaryTitle:'Context and Core Approach',
+        summaryP1:'Libya still lacks an officially adopted national poverty line despite several earlier attempts. Against a backdrop of accelerating economic and social deterioration, KIF adopted a practical and flexible approach to identify the most vulnerable households and better target humanitarian interventions.',
+        summaryP2:'The Foundation defines poverty for a five-member household as the inability to afford the minimum cost of essential goods and services. This approach is rooted in the Minimum Expenditure Basket (MEB), extends to the absolute poverty line by adding essential services, and estimates the international line through PPP and cumulative inflation adjustment.',
+        summaryStat1Title:'Economic Context',
+        summaryStat1Text:'GNI per capita declined from USD 14,970 in 2012 to USD 6,500 in 2024.',
+        summaryStat2Title:'Targeting Reference',
+        summaryStat2Text:'The poverty lines serve as a primary reference for assessing livelihoods and economic stress within the Foundation’s Vulnerability Index.',
+        povertyChartTitle:'Monthly Poverty Lines',
+        historyTitle:'Historical Reference Indicators',
+        historyItems:[
+          ['2003 — Bureau of Statistics & World Bank','LYD 225'],
+          ['2013 — Inflation-adjusted estimate','LYD 390'],
+          ['2024 — Misrata University','LYD 2,350']
+        ],
+        simTitle:'International Line Simulator',
+        rateLabel:'Target Parallel Exchange Rate (LYD / USD)',
+        regionLabel:'Geographic Scope',
+        regions:{ west:'Benghazi', east:'Tripoli', south:'Sebha' },
+        formulaBadge:'Illustrative Formula',
+        formulaText:'Daily LYD = 15.94 × (Current Exchange Rate ÷ 5.00) × Regional Multiplier',
+        refTitle:'Reference Indicators',
+        ref1Label:'PPP for 2021',
+        ref2Label:'Cumulative Inflation',
+        ref3Label:'Monthly Need per Person in 2022',
+        kpi1Label:'Monthly Need per Person',
+        kpi2Label:'Monthly Need per Household (5)',
+        kpi3Label:'Daily Need per Person',
+        kpiFoot1:'Libyan Dinar',
+        kpiFoot2:'Libyan Dinar',
+        kpiFoot3:'Libyan Dinar',
+        distributionTitle:'Illustrative Household Need Allocation',
+        cityChartTitle:'MEB Comparison by City',
+        table1Badge:'Table 1',
+        table1Title:'Poverty Estimates Since 2003',
+        table1Hint:'Values as presented in the methodological note',
+        table1Head:['Year','Institution','Poverty Rate','Household of 5','Individual'],
+        table1Rows:[
+          ['2003','Libyan Bureau of Statistics and World Bank','11.8%','LYD 225','LYD 580 yearly / 45 monthly / 1.5 daily'],
+          ['2013','World Bank (inflation-adjusted data)','14.4%','LYD 390','LYD 966 yearly / 78 monthly / 2.6 daily'],
+          ['2023','Misrata University','32%','LYD 2,350','LYD 5,640 yearly / 462 monthly / 15.4 daily']
+        ],
+        table2Badge:'Table 2',
+        table2Title:'Minimum Expenditure Basket (MEB)',
+        table2Hint:'Core food and non-food items',
+        foodTitle:'Core Food Items',
+        nonFoodTitle:'Core Non-Food Items',
+        foodItems:[
+          'Bread (30 loaves)','Onions (5 kg)','Rice (15 kg)','Canned tomato paste (4 kg)',
+          'Pasta (15 kg)','Tea (500 g)','Chicken (15 kg)','Cooking oil (2 liters)',
+          'Tuna (4 kg)','Sugar (2 kg)','Eggs (4 trays)','Salt (1 kg)',
+          'Milk (9 liters)','Flour (1 kg)','Tomatoes (6 kg)','Evaporated milk (8 × 170 ml)',
+          'Potatoes (3 kg)'
+        ],
+        nonFoodItems:[
+          'Hand soap (8 × 90 g)','Sanitary pads (3 × 8 pcs)','Toothpaste (1 × 100 g)','Shampoo (3 × 600 ml)',
+          'Laundry detergent (1 liter)','Toothbrushes (1.25 units)','Dishwashing liquid (1 × 600 ml)','Cooking gas (2 × 11 kg)'
+        ],
+        table3Badge:'Table 3',
+        table3Title:'Total MEB by City',
+        table3Hint:'Based on the February 2026 price assessment',
+        table3Head:['City','Total Food Cost','Hygiene Items','Fuel','Total MEB'],
+        table3Rows:[
+          ['Tripoli','LYD 951.5','LYD 108.125','LYD 18','LYD 1,077.625'],
+          ['Benghazi','LYD 998.5','LYD 86.3','LYD 10','LYD 1,094.8'],
+          ['Sebha','LYD 1,097.625','LYD 111.3125','LYD 20','LYD 1,228.9375']
+        ],
+        table4Badge:'Table 4',
+        table4Title:'Converting the International Poverty Line into Libyan Dinar',
+        table4Hint:'Core steps as outlined in Annex 2',
+        table4Head:['Step','Value','Explanation'],
+        table4Rows:[
+          ['International Line','USD 8.30 / person / day','Benchmark for upper-middle-income countries'],
+          ['PPP 2021','LYD 1.92 / international dollar','Libya’s PPP conversion factor'],
+          ['Daily need per person','LYD 15.94','8.30 × 1.92'],
+          ['Monthly need per person','LYD 478','15.94 × 30'],
+          ['Inflation 2021–2026','67%','Using the parallel market as a proxy indicator'],
+          ['Household need (5 people) in 2026','Around LYD 4,000','After inflation adjustment and household scaling']
+        ],
+        figure1Badge:'Figure 1',
+        figure1Title:'Monthly Poverty Lines for a Five-Member Household (LYD)',
+        figure2Badge:'Figure 2',
+        figure2Title:'Monthly Change in Minimum Expenditure Basket Prices and Parallel Market Exchange Rate (%)',
+        figure2Note:'Minimum basket prices, monthly food price changes, and the parallel market exchange rate are all highly sensitive to currency fluctuations. The chart illustrates a broad directional alignment between both indicators, reinforcing the rationale for quarterly updates to the three poverty thresholds.',
+        tocTitle:'Table of Contents',
+        side:{
+          ack:'Acknowledgements',
+          messages:'Five Key Messages',
+          context:'Context',
+          why:'Why a Foundation-Specific Poverty Line?',
+          what:'What is the KIF Poverty Line?',
+          use:'How is it Used?',
+          dynamic:'Static or Dynamic?',
+          annex1:'Annex 1',
+          annex2:'Annex 2',
+          conclusion:'Conclusion'
+        },
+        ackTitle:'Acknowledgements',
+        ackText:'This methodological note was prepared by the research team of the Khalifa International Foundation for Humanitarian Works. It presents the findings and methodology used to define the poverty lines adopted by the Foundation for humanitarian programming in Libya. The study was led by Aseel Badr and Mohamed Abubakr, with guidance and support from Mohamed Al-Majbari and Nouran Al-Arabi.',
+        msgTitle:'Five Key Messages',
+        methodMessages:[
+          ['1. Establishing Three Reference Poverty Thresholds','The Foundation adopted three critical and tiered reference thresholds: extreme poverty, absolute poverty, and the international poverty line.'],
+          ['2. A Methodology Grounded in Basic Needs','The analytical framework relies on Minimum Expenditure Basket prices to determine the extreme and absolute poverty lines, while the international line is anchored in World Bank standards.'],
+          ['3. Core Monetary Thresholds','LYD 1,250 for extreme poverty, LYD 2,700 for absolute poverty, and LYD 4,000 as the international line for an average household in 2026.'],
+          ['4. The International Poverty Line','This threshold is based on the World Bank benchmark of USD 8.30 per person per day for upper-middle-income countries, adjusted locally through PPP and inflation.'],
+          ['5. Dynamic Monitoring','All three poverty lines will be reviewed quarterly because basket prices are strongly affected by exchange-rate volatility in the parallel market.']
+        ],
+        contextTitle:'Context',
+        contextP1:'Historically, Libya was among the most prosperous economies in the region. However, protracted conflict and political instability severely undermined its economic standing, with GNI per capita dropping from about USD 14,970 in 2012 to USD 6,500 in 2024.',
+        contextP2:'The Human Development Index also declined from 0.774 in 2010 to 0.746 in 2022, while humanitarian needs expanded significantly, reinforcing the urgency of targeted and effective interventions.',
+        whyTitle:'Why Does the Foundation Use Its Own Poverty Line?',
+        whyP1:'The Foundation requires a poverty line that combines scientific rigor with practical applicability. Effective targeting maximizes the impact of limited resources by concentrating support on the most vulnerable groups. In the absence of an officially adopted national poverty line and with irregular household surveys, the Foundation needed an operational benchmark to guide field programming.',
+        whyP2:'This approach draws on earlier studies and ongoing efforts to price the Minimum Expenditure Basket, while making clear that the resulting poverty line is intended exclusively for KIF programming and does not constitute an official state poverty line.',
+        whatTitle:'What is the KIF Poverty Line?',
+        whatP1:'The Foundation defines poverty as the inability to afford the minimum goods and services required to meet essential humanitarian needs. Its methodological framework uses MEB prices to define the extreme and absolute poverty lines, while World Bank standards provide the reference for the international poverty line.',
+        whatMetrics:[
+          ['Extreme Poverty','1,250','Covers food and basic hygiene items only'],
+          ['Absolute Poverty','2,700','MEB plus healthcare, education, and housing'],
+          ['International Line','4,000','PPP + inflation adjustment + household scaling']
+        ],
+        useTitle:'How is the Poverty Line Used?',
+        useP1:'The Foundation’s poverty lines are integrated into the Vulnerability Index (VI), a multidimensional assessment tool that goes beyond financial hardship to include human capital, dignity, and access to essential services.',
+        useCard1Title:'Five Dimensions',
+        useList:[
+          'Demographic and social dimension',
+          'Health and protection',
+          'Shelter, food, and non-food items',
+          'Water, sanitation, and hygiene',
+          'Livelihoods and economic stress'
+        ],
+        useCard2Title:'Operational Reference',
+        useCard2Text:'The poverty line is used as the primary benchmark for the livelihoods and economic stress dimension to determine whether household income falls below the relevant threshold, thereby identifying households facing acute economic hardship.',
+        dynTitle:'Are the Poverty Lines Static or Dynamic?',
+        dynP1:'Minimum Expenditure Basket prices are highly sensitive to exchange-rate fluctuations. Analysis shows a strong association between basket costs and the parallel market rate. Accordingly, the basket and food price indicators will be monitored quarterly, and the three poverty lines will be updated whenever prices are revised.',
+        annex1Title:'Annex 1: Surveys and Estimates of the Minimum Expenditure Basket',
+        annex1P1:'The basket was developed through a multi-stage methodology combining normative standards, technical guidance, and field-based price verification. Data were collected between 28 January and 8 February 2026 from local markets, central markets, and small grocery stores, with the median price selected for each item.',
+        annex1Card1Title:'Adult Equivalence Scale',
+        annex1Card1Text:'The methodology uses the OECD scale: 1 for the head of household, 0.7 for each additional adult, and 0.5 for each child. The five-member reference household equals 3.2 adult equivalents.',
+        annex1Card2Title:'Nutritional Adequacy',
+        annex1Card2Text:'The basket was aligned with an average requirement of 2,100 kilocalories per person per day in line with Sphere standards, while adapting selected items to local consumption patterns.',
+        annex2Title:'Annex 2: Converting the International Poverty Line into Libyan Dinar',
+        annex2P1:'The World Bank benchmark for upper-middle-income countries is USD 8.30 per person per day in 2021 PPP terms. To convert this into Libyan dinar, the Foundation applied Libya’s PPP conversion factor of 1.92 LYD per international dollar, then updated the result to 2026 using cumulative inflation of 67%, with the parallel market exchange rate serving as a proxy inflation indicator.',
+        formulaTitle2:'FORMULA',
+        formulaBox:'8.30 × 1.92 = LYD 15.94 per person per day<br>15.94 × 30 = LYD 478 per person per month<br>478 × 1.67 ≈ LYD 800 per person per month<br>800 × 5 ≈ LYD 4,000 per household',
+        conclusionTitle:'Conclusion',
+        conclusionText:'The poverty line derived from this work serves as an operational decision-support tool that reflects the minimum cost of essential needs in Libya’s major cities under current economic conditions. While the approach does not fully capture every multidimensional aspect of living standards, it offers a transparent, replicable estimate of poverty grounded in international standards and available evidence.',
+        footerTitle:'Khalifa International Foundation for Humanitarian Works',
+        footerSub:'Poverty Line Methodological Note — Interactive Web Edition — 2026',
+        footerHint:'Keep GoldB-Arabic.png next to the HTML file so it appears automatically.',
+        chartLabels:{
+          poverty:['Extreme','Absolute','International'],
+          dist:['Food','Housing & Services','Health & Education','Emergency Buffer'],
+          city:['Tripoli','Benghazi','Sebha'],
+          fig1:['Extreme Poverty (MEB)','Absolute Poverty (MEB+)','International Poverty Line ($8)']
+        }
+      }
+    };
+
     let currentLang = "ar";
     let currentRegionMultiplier = 1.0;
     let charts = {};
     const regionMap = { west: 1.0, east: 1.15, south: 1.30 };
 
     function qs(id) { return document.getElementById(id); }
+
     function setText(id, value) {
       const el = qs(id);
       if (el) el.innerHTML = value;
     }
+
     function formatNumber(n) {
       return new Intl.NumberFormat("en-US").format(Math.round(n));
     }
@@ -571,7 +1123,7 @@
       const t = content[currentLang];
 
       qs("messageCards").innerHTML = t.messageCards.map(([title, text]) => `
-        <div class="glass rounded-[1.6rem] p-6 shadow-card">
+        <div class="glass rounded-[1.6rem] p-6 shadow-card hero-card-anim">
           <div class="text-sm font-black text-kifGold mb-2">${title}</div>
           <p class="font-bold leading-8 text-kifInk">${text}</p>
         </div>
@@ -663,9 +1215,10 @@
       document.querySelector('[data-side="annex2"]').textContent = t.side.annex2;
       document.querySelector('[data-side="conclusion"]').textContent = t.side.conclusion;
 
-      tableRenderer("table1Head","table1Body",t.table1Head,t.table1Rows);
-      tableRenderer("table3Head","table3Body",t.table3Head,t.table3Rows);
-      tableRenderer("table4Head","table4Body",t.table4Head,t.table4Rows);
+      tableRenderer("table1Head", "table1Body", t.table1Head, t.table1Rows);
+      tableRenderer("table3Head", "table3Body", t.table3Head, t.table3Rows);
+      tableRenderer("table4Head", "table4Body", t.table4Head, t.table4Rows);
+
       renderCards();
       refreshCharts();
       updateSimulator();
@@ -867,6 +1420,27 @@
       makeFigureTwoChart();
     }
 
+    function initRevealAnimations() {
+      const items = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.12 });
+
+      items.forEach((item) => observer.observe(item));
+    }
+
+    function hideSplash() {
+      const splash = document.getElementById("splashScreen");
+      if (!splash) return;
+      setTimeout(() => {
+        splash.classList.add("hide");
+      }, 1400);
+    }
+
     window.addEventListener("scroll", () => {
       const sections = document.querySelectorAll("#methodology section[id]");
       let current = "";
@@ -894,6 +1468,8 @@
     window.addEventListener("load", () => {
       applyLanguage();
       updateSimulator();
+      initRevealAnimations();
+      hideSplash();
     });
   </script>
 </body>
